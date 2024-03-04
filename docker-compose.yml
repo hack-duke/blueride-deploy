@@ -34,3 +34,7 @@ services:
       start_period: 30s
     volumes:
       - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf # Mount custom configuration file
+      - rabbitmq-data:/var/lib/rabbitmq/
+
+volumes:
+  rabbitmq-data:
