@@ -1,0 +1,24 @@
+services:
+  backend:
+    image: "hackduke/blueride-core:latest"
+    environment:
+      SENTRY_LINK: ${BC_SENTRY_LINK}
+      MONGO_URL: ${BC_MONGO_URL}
+      AMQP_URI: ${BC_AMQP_URI}
+    depends_on:
+      - rabbitmq
+    ports:
+      - "9999:8080"
+
+  mailer:
+    image: "hackduke/blueride-mailer:latest"
+    environment:
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_HOST: ${SMTP_HOST}
+      SENTRY_DSN: ${SENTRY_DSN}
+      RABBITMQ_URI: ${RABBITMQ_URI}
+    depends_on:
+      - rabbitmq
+  rabbitmq:
+    image: "rabbitmq:3.13.0-alpine"
