@@ -6,7 +6,9 @@ services:
       MONGO_URL: ${BC_MONGO_URL}
       AMQP_URI: ${BC_AMQP_URI}
     depends_on:
-      - rabbitmq
+      rabbitmq:
+        condition: service_healthy
+        restart: true
     ports:
       - "9999:8080"
 
@@ -19,7 +21,9 @@ services:
       SENTRY_DSN: ${SENTRY_DSN}
       RABBITMQ_URI: ${RABBITMQ_URI}
     depends_on:
-      - rabbitmq
+      rabbitmq:
+        condition: service_healthy
+        restart: true
   rabbitmq:
     image: "rabbitmq:3.13.0-alpine"
     healthcheck:
