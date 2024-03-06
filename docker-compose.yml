@@ -5,6 +5,7 @@ services:
       SENTRY_LINK: ${BC_SENTRY_LINK}
       MONGO_URL: ${BC_MONGO_URL}
       AMQP_URI: ${BC_AMQP_URI}
+      SECRET: ${BC_SECRET}
     depends_on:
       rabbitmq:
         condition: service_healthy
