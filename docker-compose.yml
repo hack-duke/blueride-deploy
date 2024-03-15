@@ -1,6 +1,6 @@
 services:
   backend:
-    image: "hackduke/blueride-core:v1.0.1"
+    image: "hackduke/blueride-core:1.0.1"
     environment:
       SENTRY_LINK: ${BC_SENTRY_LINK}
       MONGO_URL: ${BC_MONGO_URL}
