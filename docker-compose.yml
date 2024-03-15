@@ -1,11 +1,17 @@
 services:
   backend:
-    image: "hackduke/blueride-core:latest"
+    image: "hackduke/blueride-core:v1.0.1"
     environment:
       SENTRY_LINK: ${BC_SENTRY_LINK}
       MONGO_URL: ${BC_MONGO_URL}
       AMQP_URI: ${BC_AMQP_URI}
       SECRET: ${BC_SECRET}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/healthcheck"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
     depends_on:
       rabbitmq:
         condition: service_healthy
