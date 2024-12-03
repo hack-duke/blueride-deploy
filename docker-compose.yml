@@ -1,4 +1,17 @@
 services:
+  caddy:
+    image: "caddy:latest"
+    container_name: caddy
+    ports:
+        - "80:80"
+        - "443:443"
+    volumes:
+        - ./Caddyfile:/etc/caddy/Caddyfile
+        - ./caddy_data:/data
+        - ./caddy_config:/config
+    environment:
+        - ACME_AGREE=true
+     
   backend:
     image: "hackduke/blueride-core:1.0.1"
     environment:
